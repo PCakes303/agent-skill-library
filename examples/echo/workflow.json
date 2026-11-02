@@ -1,0 +1,24 @@
+{
+  "workflow_version": "1.0",
+  "skill_id": "example.echo.workflow",
+  "skill_version": "0.1.0",
+  "description": "A minimal illustrative workflow with one declared adapter invocation.",
+  "steps": [
+    {
+      "id": "echo-message",
+      "action": "tool.invoke",
+      "adapter_id": "example.echo",
+      "capability": "example.echo",
+      "inputs": {
+        "message": "hello"
+      },
+      "policy": {
+        "action": "tool.invoke",
+        "resource": "tool:example.echo",
+        "scopes": [
+          "example.echo"
+        ]
+      }
+    }
+  ]
+}

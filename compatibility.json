@@ -1,0 +1,33 @@
+{
+  "compatibility_version": "1.1.0",
+  "repository": "agent-skill-library",
+  "policy": "Dependencies describe contract relationships only; they do not prove runtime interoperability. A dependency is marked tested only after a reproducible cross-repository fixture and CI evidence are published.",
+  "dependencies": [
+    {
+      "repository_id": "resource-manifest",
+      "version_range": "Resource Manifest v1.0; not pinned",
+      "status": "declared",
+      "evidence": []
+    },
+    {
+      "repository_id": "schema-registry",
+      "version_range": "schema catalog conventions; not pinned",
+      "status": "declared",
+      "evidence": []
+    },
+    {
+      "repository_id": "policy-engine",
+      "version_range": "decision request semantics; not pinned",
+      "status": "declared",
+      "evidence": []
+    },
+    {
+      "repository_id": "tool-adapters",
+      "version_range": "adapter descriptor/capability concepts; not pinned",
+      "status": "declared",
+      "evidence": []
+    }
+  ],
+  "tested_combinations": [],
+  "breaking_change_policy": "Major versions may change required package fields or workflow semantics; minor versions add backward-compatible optional fields or actions; patch versions correct editorial or non-semantic defects."
+}

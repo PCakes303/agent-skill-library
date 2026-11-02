@@ -1,0 +1,14 @@
+# Agent Skill Library
+
+Experimental declarative skill package contract and validator.
+
+- Read README.md for scope and limitations.
+- Read docs/SKILL-CONTRACT.md for package and workflow semantics.
+- Read docs/THREAT-MODEL.md before consuming untrusted skills.
+- Validate an example: python tools/validate_skill.py examples/echo
+- Run tests: python -m unittest discover -s tests -v
+- Workflow schema: schemas/skill-workflow.schema.json
+- Resource metadata contract: https://github.com/PCakes303/agent-resource-manifest
+- Master registry: https://github.com/PCakes303/agent-intelligence-ecosystem
+
+This repository does not execute skills, authenticate publishers, enforce policy, or provide sandbox isolation.

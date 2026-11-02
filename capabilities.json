@@ -1,0 +1,57 @@
+{
+  "capabilities_version": "1.1.0",
+  "repository": "agent-skill-library",
+  "repository_id": "skill-library",
+  "maturity": "experimental",
+  "capabilities": [
+    {
+      "id": "skills.declarative-workflow-schema",
+      "name": "Declarative skill workflow schema",
+      "status": "tested",
+      "description": "Defines bounded ordered workflow steps, explicit action types, tool adapter references, and per-step policy intent.",
+      "evidence": [
+        "schemas/skill-workflow.schema.json",
+        "docs/SKILL-CONTRACT.md"
+      ],
+      "limitations": [
+        "Schema validity does not authenticate a publisher, authorize an action, or execute a workflow."
+      ]
+    },
+    {
+      "id": "skills.package-validation",
+      "name": "Local skill package validator",
+      "status": "tested",
+      "description": "Checks resource/workflow identity alignment, required metadata, bounded step structure, policy declarations, and JSON input safety.",
+      "evidence": [
+        "tools/validate_skill.py",
+        "tests/test_validate_skill.py"
+      ],
+      "limitations": [
+        "Validator is local and dependency-free; it does not validate external JSON Schema references or enforce policy."
+      ]
+    },
+    {
+      "id": "skills.machine-discoverable-package",
+      "name": "Machine-discoverable skill package layout",
+      "status": "scaffolded",
+      "description": "Separates Resource Manifest metadata from the versioned workflow document and includes a synthetic example.",
+      "evidence": [
+        "examples/echo/resource.json",
+        "examples/echo/workflow.json"
+      ],
+      "limitations": [
+        "No hosted catalog, search index, publisher directory, signature verification, or package distribution service."
+      ]
+    }
+  ],
+  "explicit_non_capabilities": [
+    "Workflow execution or orchestration",
+    "Publisher authentication, identity proof, signing, or reputation",
+    "Authorization or policy enforcement",
+    "Tool adapter loading, invocation, or sandboxing",
+    "Dependency installation or resolution",
+    "Network access, secret management, or credential storage",
+    "Human approval enforcement",
+    "Remote catalog or package distribution"
+  ]
+}

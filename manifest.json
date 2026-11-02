@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/PCakes303/agent-skill-library/blob/main/manifest.json",
+  "manifest_version": "1.0.0",
+  "id": "skill-library",
+  "name": "agent-skill-library",
+  "visibility": "public",
+  "maturity": "experimental",
+  "summary": "Experimental declarative skill package contract, workflow schema, and dependency-free validator for reusable versioned agent workflows; no workflow execution or publisher trust service.",
+  "license": {
+    "expression": null,
+    "status": "pending-review",
+    "notes": "License selection is pending portfolio-wide legal and dependency review. No license is asserted."
+  },
+  "interfaces": [
+    {
+      "name": "agent-skill-workflow",
+      "version": "1.0.0",
+      "kind": "json-schema",
+      "stability": "experimental"
+    },
+    {
+      "name": "skill-package-validator",
+      "version": "0.1.0",
+      "kind": "cli",
+      "stability": "experimental"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "resource-manifest",
+      "constraint": "Resource Manifest v1.0 skill resource contract; version not pinned",
+      "kind": "contract"
+    },
+    {
+      "id": "schema-registry",
+      "constraint": "Schema publication and compatibility conventions; version not pinned",
+      "kind": "contract"
+    },
+    {
+      "id": "policy-engine",
+      "constraint": "Per-step policy decision request semantics; no enforcement integration",
+      "kind": "contract"
+    },
+    {
+      "id": "tool-adapters",
+      "constraint": "Declarative adapter/capability references; no runtime invocation integration",
+      "kind": "contract"
+    }
+  ],
+  "security": {
+    "threat_model": "docs/THREAT-MODEL.md",
+    "secrets_in_repository": false,
+    "data_classification": "public",
+    "security_contact": null
+  },
+  "repository_url": "https://github.com/PCakes303/agent-skill-library",
+  "default_branch": "main",
+  "compatibility": [],
+  "evidence": [
+    {
+      "claim": "Workflow schema, dependency-free package validator, synthetic example, and regression tests are present.",
+      "kind": "test",
+      "location": "schemas/skill-workflow.schema.json, tools/validate_skill.py, examples/echo/, tests/"
+    }
+  ]
+}

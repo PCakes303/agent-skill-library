@@ -1,0 +1,13 @@
+{
+  "manifest_version": "1.0",
+  "id": "example.echo.workflow",
+  "kind": "skill",
+  "name": "Example Echo Workflow",
+  "version": "0.1.0",
+  "description": "Synthetic example demonstrating a declarative skill package; it does not execute a real tool.",
+  "entrypoint": "workflow.json",
+  "permissions": [
+    "example.echo"
+  ],
+  "dependencies": []
+}

@@ -53,12 +53,12 @@ class SkillValidatorTests(unittest.TestCase):
         def change(r, w):
             w["steps"] = [dict(w["steps"][0], id=f"step-{i}") for i in range(51)]
         path = self.make_package(change)
-        with self.assertRaisesRegex(SkillValidationError, "1-50"):
+        with self.assertRaisesRegex(SkillValidationError, "steps"):
             validate_package(path)
 
     def test_unknown_action_rejected(self):
         path = self.make_package(lambda r, w: w["steps"][0].update(action="shell.exec"))
-        with self.assertRaisesRegex(SkillValidationError, "not supported"):
+        with self.assertRaisesRegex(SkillValidationError, "steps.0.action"):
             validate_package(path)
 
     def test_tool_step_requires_adapter_and_capability(self):
@@ -119,12 +119,12 @@ class SkillValidatorTests(unittest.TestCase):
 
     def test_inputs_must_be_object(self):
         path = self.make_package(lambda r, w: w["steps"][0].update(inputs=["not", "object"]))
-        with self.assertRaisesRegex(SkillValidationError, "inputs must be an object"):
+        with self.assertRaisesRegex(SkillValidationError, "steps.0.inputs"):
             validate_package(path)
 
     def test_policy_scopes_must_be_unique(self):
         path = self.make_package(lambda r, w: w["steps"][0]["policy"].update(scopes=["a","a"]))
-        with self.assertRaisesRegex(SkillValidationError, "scopes must be unique"):
+        with self.assertRaisesRegex(SkillValidationError, "steps.0.policy.scopes"):
             validate_package(path)
 
     def test_unknown_properties_rejected_at_every_contract_level(self):

@@ -6,7 +6,7 @@ This repository contains a declarative workflow format and local validator. It i
 
 ## Reporting
 
-Use GitHub private vulnerability reporting when enabled. Do not publish suspected vulnerabilities in public issues. Include the affected commit, impact, and minimal reproduction; do not include secrets or unrelated personal data.
+Do not publish suspected vulnerabilities or exploitable details in public issues. Use GitHub private vulnerability reporting or a private security advisory only if enabled for this repository. No dedicated private reporting address is published here; if GitHub private reporting is unavailable, the owner must configure an approved private reporting channel before production use. Do not include secrets or unrelated personal data in public channels.
 
 ## Security expectations
 

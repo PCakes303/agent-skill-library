@@ -1,6 +1,7 @@
 # Agent Skill Library
 
 **Maturity:** experimental reference format and validator  
+**Initial deployment:** 2026-11-02  
 **Owner:** MrCakes931 / PCakes303  
 **License:** pending review
 

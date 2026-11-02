@@ -3,7 +3,7 @@
 **Maturity:** experimental reference format and validator  
 **Initial deployment:** 2026-11-02  
 **Owner:** MrCakes931 / PCakes303  
-**License:** pending review
+**License:** [Scoped mixed-license policy](LICENSE.md).
 
 A machine-discoverable catalog format for reusable, versioned, declarative agent workflows. A skill package separates its portable Resource Manifest from a constrained workflow document.
 
@@ -61,4 +61,4 @@ python tools/validate_skill.py examples/echo
 python -m unittest discover -s tests -v
 ```
 
-License selection remains pending portfolio-level review. No license is asserted.
+This repository applies a scoped mixed-license policy: original source code and machine-readable contracts are licensed under Apache-2.0; original human-readable documentation is licensed under CC BY 4.0. Third-party material retains upstream terms. Datasets, evidence, fixtures, sample payloads, media, and material with uncertain provenance are not blanket-licensed and require separate review. See [LICENSE.md](LICENSE.md).

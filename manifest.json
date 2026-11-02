@@ -6,7 +6,7 @@
   "name": "agent-skill-library",
   "visibility": "public",
   "maturity": "experimental",
-  "summary": "Experimental declarative skill package contract, workflow schema, and dependency-free validator for reusable versioned agent workflows; no workflow execution or publisher trust service.",
+  "summary": "Experimental declarative skill package contract with schema-backed validation; no workflow execution.",
   "license": {
     "expression": null,
     "status": "pending-review",

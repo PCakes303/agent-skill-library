@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-free validator for declarative Agent Skill packages."""
+"""Schema-backed validator for declarative Agent Skill packages."""
 from __future__ import annotations
 import argparse
 import json
@@ -7,6 +7,7 @@ import math
 import re
 import sys
 from pathlib import Path
+from jsonschema import Draft202012Validator
 
 MAX_FILE_BYTES = 256 * 1024
 MAX_DEPTH = 32
@@ -53,12 +54,28 @@ def _load(path):
     try:
         value = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs_no_duplicates,
                            parse_constant=_reject_constant)
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+    except (UnicodeDecodeError, json.JSONDecodeError, RecursionError) as exc:
         raise SkillValidationError(f"invalid UTF-8 JSON in {path.name}: {exc}") from exc
     _depth(value)
     if not isinstance(value, dict):
         raise SkillValidationError(f"{path.name} must contain a JSON object")
     return value
+
+def _validate_schema(document, schema_name, document_name):
+    schema_path = Path(__file__).resolve().parents[1] / "schemas" / schema_name
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        Draft202012Validator.check_schema(schema)
+        errors = sorted(
+            Draft202012Validator(schema).iter_errors(document),
+            key=lambda error: (tuple(str(part) for part in error.absolute_path), error.message),
+        )
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        raise SkillValidationError(f"{schema_name} is unavailable or invalid: {type(exc).__name__}") from exc
+    if errors:
+        error = errors[0]
+        location = ".".join(str(part) for part in error.absolute_path) or "<root>"
+        raise SkillValidationError(f"{document_name} schema violation at {location}: {error.message}")
 
 def validate_package(directory):
     directory = Path(directory)
@@ -68,6 +85,8 @@ def validate_package(directory):
         raise SkillValidationError("package must contain resource.json and workflow.json")
     resource = _load(resource_path)
     workflow = _load(workflow_path)
+    _validate_schema(resource, "resource-manifest.schema.json", "resource.json")
+    _validate_schema(workflow, "skill-workflow.schema.json", "workflow.json")
 
     required_resource = {"manifest_version", "id", "kind", "name", "version"}
     missing = sorted(required_resource - resource.keys())

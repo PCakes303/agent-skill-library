@@ -12,10 +12,20 @@ A machine-discoverable catalog format for reusable, versioned, declarative agent
 - A skill package contract with stable identifiers and semantic versions.
 - A workflow schema with bounded, ordered, declarative steps.
 - Per-step policy-intent metadata and explicit tool-adapter references.
-- A dependency-free Python validator and negative regression tests.
+- A schema-backed Python validator and negative regression tests.
 - A synthetic example package.
 
 This repository validates declarations. It does **not** execute workflows, authenticate publishers, authorize principals, enforce policy, resolve or install dependencies, or isolate tools.
+
+## Development validation
+
+Install the pinned schema validator and run the regression suite:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python tools/validate_skill.py examples/echo
+python -m unittest discover -s tests -v
+```
 
 ## Quick start
 

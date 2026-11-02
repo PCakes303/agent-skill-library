@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/PCakes303/agent-resource-manifest/schemas/resource-manifest.schema.json",
+  "title": "Agent Resource Manifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "id",
+    "kind",
+    "name",
+    "version"
+  ],
+  "properties": {
+    "manifest_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{2,127}$"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "tool",
+        "skill",
+        "model",
+        "dataset",
+        "service",
+        "resource"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "entrypoint": {
+      "type": "string",
+      "maxLength": 512
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "uniqueItems": true,
+      "maxItems": 128
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128
+      },
+      "uniqueItems": true,
+      "maxItems": 128
+    },
+    "integrity": {
+      "type": "object",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": [
+            "sha256",
+            "sha384",
+            "sha512"
+          ]
+        },
+        "digest": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "algorithm",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
